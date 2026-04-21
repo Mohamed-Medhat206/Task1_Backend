@@ -19,9 +19,9 @@ class GymClassAdmin(admin.ModelAdmin):
     discounted_price.short_description = "Discounted Price"
 
 
-
 @admin.register(DamagedEquipments)
-class DamagedEquipments(admin.ModelAdmin):
-    def get_queryset(self):
-        return Equipment.objects.filter(is_damaged=True)
-    
+class DamagedEquipmentAdmin(admin.ModelAdmin):
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.filter(is_damaged=True)
